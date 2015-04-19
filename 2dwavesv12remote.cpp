@@ -3,7 +3,7 @@
 #include <ctime>
 #include <iostream>
 //#include "./CImg-1.5.6/CImg.h" 
-#include "CImg.h"
+#include "CImg-1.6.2/CImg.h"
 #define pi 3.14159265359	
 #define xsize 256
 #define ysize 256
