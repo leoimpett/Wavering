@@ -3,6 +3,7 @@
 #include <ctime>
 #include <iostream>
 //#include "./CImg-1.5.6/CImg.h" 
+//#include "CImg.h"
 #include "CImg-1.6.2/CImg.h"
 #define pi 3.14159265359	
 #define xsize 256
@@ -302,23 +303,29 @@ if(yold3 > (ysize-10)){yold3 = ysize-10;};
       pw.startBundle().startBundle().addMessage(msg).endBundle().endBundle();
       bool ok = sock.sendPacket(pw.packetData(), pw.packetSize());
       
+      
           PacketReader pr;
-       while (sock.isOk()) {      
-      if (sock.receiveNextPacket(30 /* timeout, in ms */)) {
+       if (sock.isOk()) {      
+      if (sock.receiveNextPacket(30)) {  //number of milliseconds allowable delay
         pr.init(sock.packetData(), sock.packetSize());
         oscpkt::Message *msg;
+        
+        
         while (pr.isOk() && (msg = pr.popMessage()) != 0) {
           int iarg;
-          if (msg->match("/ping").popInt32(iarg).isOkNoMoreArgs()) {
+          if (msg->match("/").popInt32(iarg).isOkNoMoreArgs()) {
             cout << "Server: received /ping " << iarg << " from " << sock.packetOrigin() << "\n";
           } 
-/*          else {
+          else {
             cout << "Server: unhandled message: " << *msg << "\n";
-          }*/
+          }
         }
+        
+        
+        
+        
       }
     }
-
 
 	
 
@@ -356,6 +363,22 @@ omega3 = omega3*learn3;
 
 
 }
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+	
+
 	
 	
 	
