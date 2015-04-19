@@ -144,7 +144,8 @@ int main() {
 
 
 	  UdpSocket sock;
-  sock.connectTo("Jonathans-MacBook-Pro.local", PORT_NUM);
+ // sock.connectTo("Jonathans-MacBook-Pro.local", PORT_NUM);
+ sock.connectTo("localhost", PORT_NUM);
 	
 	float grid[xsize][ysize][3];
 	
@@ -307,14 +308,14 @@ if(yold3 > (ysize-10)){yold3 = ysize-10;};
           PacketReader pr;
        if (sock.isOk()) {   
 		    cout << "Socket is OK! \n";   
-      if (sock.receiveNextPacket(30)) {  //number of milliseconds allowable delay
+      if (sock.receiveNextPacket(100)) {  //number of milliseconds allowable delay
         pr.init(sock.packetData(), sock.packetSize());
         oscpkt::Message *msg;
         
         
         while (pr.isOk() && (msg = pr.popMessage()) != 0) {
           int iarg;
-          if (msg->match("/").popInt32(iarg).isOkNoMoreArgs()) {
+          if (msg->match("/ping").popInt32(iarg).isOkNoMoreArgs()) {
             cout << "Server: received /ping " << iarg << " from " << sock.packetOrigin() << "\n";
           } 
           else {
