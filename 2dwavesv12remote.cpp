@@ -153,7 +153,7 @@ int main() {
 	
 	CImg<unsigned char> img(xsize,ysize,1,3);      
 
-	  CImgDisplay main_disp(img,"Press any key to advance time");
+	  CImgDisplay main_disp(img,"Waves, V12!");
 
 	cimg_forXYC(img,x,y,v) {
 	img(x,y,0) = 255;
@@ -305,7 +305,8 @@ if(yold3 > (ysize-10)){yold3 = ysize-10;};
       
       
           PacketReader pr;
-       if (sock.isOk()) {      
+       if (sock.isOk()) {   
+		    cout << "Socket is OK! \n";   
       if (sock.receiveNextPacket(30)) {  //number of milliseconds allowable delay
         pr.init(sock.packetData(), sock.packetSize());
         oscpkt::Message *msg;
