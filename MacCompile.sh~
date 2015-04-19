@@ -1,0 +1,3 @@
+g++ -Wall -o "V12App" "2dwavesv12remote.cpp" -O2 -L/usr/X11R6/lib -lm -lpthread   -pthread -lX11 
+
+g++ -o hello_word.exe hello_world.cpp -O2 -lm -lpthread -I/usr/X11R6/include -L/usr/X11R6/lib -lm -lpthread -lX11
